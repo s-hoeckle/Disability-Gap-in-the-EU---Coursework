@@ -1,3 +1,12 @@
+#colour palette for this project:
+#teal sequence light to dark
+#b5d1ae teal 1
+#80ae9a teal 2
+#568b87 teal 3
+#326b77 teal 4
+#1b485e teal 5
+#122740 teal 6
+
 import pandas as pd
 
 # Pandas display options
@@ -88,19 +97,43 @@ df = df[
 # Pivot data so each severity level becomes a column
 df_pivot = df.pivot(index='geo', columns='lev_limit', values='disability_rate')
 
-# Sort countries by severe violence for readability
-df_pivot = df_pivot.sort_values('SEV')
+# Sort countries by no disability value for readability
+df_pivot = df_pivot.sort_values('NONE')
 
 # Plot settings
-y = np.arange(len(df_pivot))
+group_spacing = 1.3
+y = np.arange(len(df_pivot)) * group_spacing
 bar_height = 0.25
 
-plt.figure(figsize=(10, 8))
+plt.figure(figsize=(12, 10))
 
-plt.barh(y - 2*bar_height, df_pivot['NONE'], height=bar_height, label='No limitation in activity')
-plt.barh(y - bar_height, df_pivot['SOME'], height=bar_height, label='Some limitation in activity')
-plt.barh(y, df_pivot['SM_SEV'], height=bar_height, label='Some or severe limitation in activity')
-plt.barh(y + bar_height, df_pivot['SEV'], height=bar_height, label='Severe limitation in activity')
+
+colors = {
+    'NONE': '#122740',  # teal 6
+    'SOME':   '#326b77',  # teal 4
+    'SM_SEV': '#568b87',  # teal 3
+    'SEV':    '#b5d1ae'   # teal 1
+}
+
+
+
+
+plt.barh(y - 2*bar_height, df_pivot['NONE'],
+         height=bar_height, label='No limitation in activity',
+         color=colors['NONE'])
+
+plt.barh(y - bar_height, df_pivot['SOME'],
+         height=bar_height, label='Some limitation in activity',
+         color=colors['SOME'])
+
+plt.barh(y, df_pivot['SM_SEV'],
+         height=bar_height, label='Some or severe limitation in activity',
+         color=colors['SM_SEV'])
+
+plt.barh(y + bar_height, df_pivot['SEV'],
+         height=bar_height, label='Severe limitation in activity',
+         color=colors['SEV'])
+
 
 
 plt.yticks(y, df_pivot.index)
