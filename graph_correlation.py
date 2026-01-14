@@ -22,7 +22,7 @@ def get_education_gap(df):
     
     mask = (
         (df['age'] == age_filter) &
-        (df['isced11'] == conf['level']) &
+        (df['isced11'] == conf['tet_level']) &
         (df['sex'] == 'T') &
         (df['geo'].str.len() == 2) &
         (df['disability_status'].isin([conf['able_code'], conf['disability_code']]))
@@ -94,7 +94,7 @@ def plot(gbv_df, edu_df):
     # 6. Styling
     plt.title("Correlation: Education Inequality (University level) vs. Violence Risk Gap")
     plt.xlabel("Education Gap (pp)\n(Higher = More inequality in degrees)")
-    plt.ylabel("Violence Risk Gap (pp)\n(Higher = Greater excess risk for disabled women)")
+    plt.ylabel("Violence Risk Gap (pp)\n(Higher = Greater excess reports of violence by disabled women)")
     
     # Add grid for readability in scatter plots
     plt.grid(True, linestyle='--', alpha=0.3, color='gray')
@@ -105,3 +105,6 @@ def plot(gbv_df, edu_df):
 
     plt.tight_layout()
     plt.show()
+
+    #graph 2 - correlation in women with upper secondary education
+

@@ -20,7 +20,7 @@ def plot(df):
     # Filter
     mask = (
         (df['age'] == age_filter) &
-        (df['isced11'] == conf['level']) &
+        (df['isced11'] == conf['tet_level']) &
         (df['sex'] == 'F') &
         (df['geo'].str.len() == 2) & 
         (df['disability_status'].isin([conf['able_code'], conf['disability_code']]))
