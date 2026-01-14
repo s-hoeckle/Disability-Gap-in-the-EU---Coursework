@@ -16,15 +16,15 @@ TEAL_PALETTE = {
 
 # Semantic Color Mapping
 COLORS = {
-    'NONE':   TEAL_PALETTE['teal_6'], # No limitation
-    'SOME':   TEAL_PALETTE['teal_4'], # Some limitation
-    'SEV':    TEAL_PALETTE['teal_1'], # Severe limitation
-    'SM_SEV': TEAL_PALETTE['teal_4'], # Some or severe (Aggregated)
+    'NONE':   TEAL_PALETTE['teal_6'],
+    'SOME':   TEAL_PALETTE['teal_4'], 
+    'SEV':    TEAL_PALETTE['teal_1'], 
+    'SM_SEV': TEAL_PALETTE['teal_4'], 
     'GAP_TEXT': TEAL_PALETTE['teal_4']
 }
 
 PLOT_SETTINGS = {
-    'figsize': (12, 10),
+    'figsize': (15, 10),
     'group_spacing': 1.3,
     'bar_height': 0.25,
     'bar_height_gap': 0.35
@@ -48,7 +48,7 @@ EXCLUDED_GEO = ['EU_V']
 EDU_CONFIG = {
     'target_age': 'Y15-74',
     'fallback_age': 'Y15-64',
-    'level': 'ED5-8',        # Tertiary Education
+    'level': 'ED5-8',        
     'disability_code': 'SM_SEV',
     'able_code': 'NONE'
 }

@@ -21,8 +21,8 @@ def plot(df):
     mask = (
         (df['age'] == age_filter) &
         (df['isced11'] == conf['level']) &
-        (df['sex'] == 'T') &
-        (df['geo'].str.len() == 2) & # Countries only (2 chars)
+        (df['sex'] == 'F') &
+        (df['geo'].str.len() == 2) & 
         (df['disability_status'].isin([conf['able_code'], conf['disability_code']]))
     )
     df_filtered = df[mask].copy()
@@ -48,18 +48,20 @@ def plot(df):
              label='Some or severe limitation (SM_SEV)', color=config.TEAL_PALETTE['teal_4'])
 
     # Annotations
-    for i, gap in enumerate(df_pivot['edu_gap']):
-        plt.text(gap + 0.5, i, f"+{gap:.1f} pp", va='center', fontsize=9, color=config.TEAL_PALETTE['teal_6'])
+    for i, (idx, row) in enumerate(df_pivot.iterrows()):
+        gap = row['edu_gap']
+        
+        max_width = max(row[conf['able_code']], row[conf['disability_code']])
+        
+        plt.text(max_width, i, f"+{gap:.1f} pp", 
+                 va='center', fontsize=9, color=config.TEAL_PALETTE['teal_6'])
 
     plt.yticks(y, df_pivot.index)
     plt.xlabel("Percentage Point Gap")
     plt.title(f"University Education Gap ({age_filter})\nExcess rate of degrees held by able-bodied vs. disabled people")
     
     # Styling
-    plt.grid(axis='x', linestyle='--', alpha=0.5)
-    plt.gca().spines['top'].set_visible(False)
-    plt.gca().spines['right'].set_visible(False)
-    plt.gca().spines['left'].set_visible(False)
+    
     plt.legend()
     plt.tight_layout()
     plt.show()

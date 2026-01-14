@@ -4,6 +4,7 @@ import data_loader
 import graph_violence_disability_levels
 import graph_violence_gap
 import graph_edu_gap
+import graph_correlation
 
 def main():
     print("--- Starting Analysis ---")
@@ -25,7 +26,11 @@ def main():
     print("Generating Graph 3: Education Gap...")
     graph_edu_gap.plot(edu_df)
 
-    print("--- Analysis Complete ---")
+    print("Generating Graph 4: Correlation Analysis...") 
+    graph_correlation.plot(gbv_df, edu_df)
+
 
 if __name__ == "__main__":
     main()
+
+    print("--- Analysis Complete ---")
