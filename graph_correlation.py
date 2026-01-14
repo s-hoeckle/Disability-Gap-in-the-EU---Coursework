@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import config
+from scipy import stats
 
 def get_violence_gap(df):
     """Helper to calculate violence gap per country"""
@@ -35,6 +36,19 @@ def get_education_gap(df):
     gap_series = pivot[conf['able_code']] - pivot[conf['disability_code']]
     return gap_series.rename("edu_gap")
 
+def remove_outliers(df, columns, threshold=3.0):
+    z_scores = np.abs(stats.zscore(df[columns]))
+    
+
+    df_clean = df[(z_scores < threshold).all(axis=1)]
+    
+    removed = df.index.difference(df_clean.index).tolist()
+    if removed:
+        print(f"--- Outliers Removed (Threshold {threshold}) ---")
+        print(f"Countries: {', '.join(removed)}")
+        
+    return df_clean
+
 def plot(gbv_df, edu_df):
     """
     Plots a scatter graph correlating Education Gap vs Violence Gap.
@@ -46,6 +60,7 @@ def plot(gbv_df, edu_df):
     # 2. Merge on Country Code (geo)
     # Inner join keeps only countries present in BOTH datasets
     df = pd.concat([v_gap, e_gap], axis=1, join='inner').dropna()
+    df = remove_outliers(df, columns=['violence_gap', 'edu_gap'], threshold=3.0)
 
     # 3. Setup Plot
     plt.figure(figsize=(10, 8))
