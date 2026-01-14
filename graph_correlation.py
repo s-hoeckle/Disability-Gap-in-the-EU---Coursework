@@ -106,5 +106,5 @@ def plot(gbv_df, edu_df):
     plt.tight_layout()
     plt.show()
 
-    #graph 2 - correlation in women with upper secondary education
+    #graph 2 - correlation in women with upper secondary education or above
 
