@@ -48,7 +48,8 @@ EXCLUDED_GEO = ['EU_V']
 EDU_CONFIG = {
     'target_age': 'Y15-74',
     'fallback_age': 'Y15-64',
-    'tet_level': 'ED5-8',      
+    'tet_level': 'ED5-8',
+    'prim_level': 'ED0-2',     
     'disability_code': 'SM_SEV',
     'able_code': 'NONE'
 }

@@ -40,4 +40,4 @@ def plot(df):
     plt.title("Disability Risk Gap: Difference in violence reported\n(Some/Severe limitations vs No limitations)")
     plt.legend()
     plt.tight_layout()
-    plt.show()
+    

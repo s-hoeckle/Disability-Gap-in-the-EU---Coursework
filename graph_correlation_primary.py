@@ -97,7 +97,7 @@ def plot(gbv_df, edu_df):
         plt.legend([f"Trend (r = {corr:.2f})"])
 
     # 4. Styling
-    plt.title("Correlation: Education Inequality (Upper Secondary -) vs. Violence Risk Gap\n(Subset: Women Only)")
+    plt.title("Correlation: Education Inequality (below upper secondary) vs. Violence Risk Gap\n(Subset: Women Only)")
     plt.xlabel("Education Gap (pp)\n(Inequality in attaining Primary or lower secondary education)")
     plt.ylabel("Violence Risk Gap (pp)\n(Excess reports of violence by disabled women)")
     
@@ -106,4 +106,4 @@ def plot(gbv_df, edu_df):
     plt.gca().spines['right'].set_visible(False)
 
     plt.tight_layout()
-    plt.show()
+    

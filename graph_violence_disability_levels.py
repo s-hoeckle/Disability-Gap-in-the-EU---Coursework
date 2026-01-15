@@ -36,4 +36,4 @@ def plot(df):
     plt.title("Women who have experienced violence by any partner by level of disability (2021)")
     plt.legend()
     plt.tight_layout()
-    plt.show()
+    

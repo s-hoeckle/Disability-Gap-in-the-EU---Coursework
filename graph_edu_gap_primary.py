@@ -20,7 +20,7 @@ def plot(df):
     # Filter
     mask = (
         (df['age'] == age_filter) &
-        (df['isced11'] == conf['tet_level']) &
+        (df['isced11'] == conf['prim_level']) &
         (df['sex'] == 'F') &
         (df['geo'].str.len() == 2) & 
         (df['disability_status'].isin([conf['able_code'], conf['disability_code']]))
@@ -58,10 +58,10 @@ def plot(df):
 
     plt.yticks(y, df_pivot.index)
     plt.xlabel("Percentage Point Gap")
-    plt.title(f"University Education Gap ({age_filter})\nExcess rate of degrees held by able-bodied vs. disabled people")
+    plt.title(f"Primary Education Gap ({age_filter})\nExcess rate of Primary Education being the highest level attained by disabled vs. able bodied people")
     
     # Styling
     
     plt.legend()
     plt.tight_layout()
-    plt.show()
+    

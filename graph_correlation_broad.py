@@ -106,4 +106,4 @@ def plot(gbv_df, edu_df):
     plt.gca().spines['right'].set_visible(False)
 
     plt.tight_layout()
-    plt.show()
+    

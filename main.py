@@ -1,12 +1,15 @@
 # main.py
+import matplotlib.pyplot as plt
 import config
 import data_loader
 import graph_violence_disability_levels
 import graph_violence_gap
-import graph_edu_gap
-import graph_correlation
+import graph_edu_gap_uni
+import graph_edu_gap_primary
+import graph_correlation_uni
 import graph_correlation_broad
 import graph_correlation_primary
+
 
 def main():
     print("--- Starting Analysis ---")
@@ -26,18 +29,23 @@ def main():
     graph_violence_gap.plot(gbv_df)
 
     print("Generating Graph 3: Education Gap...")
-    graph_edu_gap.plot(edu_df)
+    graph_edu_gap_uni.plot(edu_df)
 
     print("Generating Graph 4: Correlation Analysis for University level...") 
-    graph_correlation.plot(gbv_df, edu_df)
+    graph_correlation_uni.plot(gbv_df, edu_df)
 
-    print("Generating Graph 5: Broad Education Gap Correlation Analysis...")
+    print("Generating Graph 5: Primary Education Gap...")
+    graph_edu_gap_primary.plot(edu_df)
+
+    print("Generating Graph 6: Broad Education Gap Correlation Analysis...")
     graph_correlation_broad.plot(gbv_df, edu_df)
 
-    print("Generating Graph 6: Primary Education Gap Correlation Analysis...")
+    print("Generating Graph 7: Primary Education Gap Correlation Analysis...")
     graph_correlation_primary.plot(gbv_df, edu_df)
 
-    
+    plt.show()
+
+
 if __name__ == "__main__":
     main()
 
