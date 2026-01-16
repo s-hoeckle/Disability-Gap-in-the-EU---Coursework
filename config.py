@@ -1,10 +1,4 @@
-# config.py
 
-# -------------------------------------------------------------------
-# Visualization Settings & Colors
-# -------------------------------------------------------------------
-
-# Teal sequence (Light to Dark)
 TEAL_PALETTE = {
     'teal_1': '#b5d1ae', # Lightest
     'teal_2': '#80ae9a',
@@ -14,7 +8,7 @@ TEAL_PALETTE = {
     'teal_6': '#122740', # Darkest
 }
 
-# Semantic Color Mapping
+
 COLORS = {
     'NONE':   TEAL_PALETTE['teal_6'],
     'SOME':   TEAL_PALETTE['teal_4'], 
@@ -30,21 +24,19 @@ PLOT_SETTINGS = {
     'bar_height_gap': 0.35
 }
 
-# -------------------------------------------------------------------
-# Data Settings
-# -------------------------------------------------------------------
 
-# File Paths
+
+
 FILES = {
     "gbv_any": "data/estat_gbv_any_lim.tsv",
     "education": "data/estat_edat_lfs_9920.tsv"
 }
 
-# Filter Constants
+
 SEVERITY_LEVELS = ['TOTAL', 'SOME', 'SEV', 'SM_SEV', 'NONE']
 EXCLUDED_GEO = ['EU_V']
 
-# Education Analysis Constants
+
 EDU_CONFIG = {
     'target_age': 'Y15-74',
     'fallback_age': 'Y15-64',
