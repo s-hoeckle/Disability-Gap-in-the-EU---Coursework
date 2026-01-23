@@ -1,4 +1,3 @@
-
 import matplotlib.pyplot as plt
 import config
 import data_loader
@@ -10,18 +9,15 @@ import graph_correlation_uni
 import graph_correlation_broad
 import graph_correlation_primary
 
-
-def main():
+if __name__ == "__main__":
     print("--- Starting Analysis ---")
 
-   
     print(f"Loading GBV data from {config.FILES['gbv_any']}...")
-    gbv_df = data_loader.process_gbv_data(config.FILES['gbv_any'])
+    gbv_df = data_loader.process_gbv_data(config.FILES["gbv_any"])
 
     print(f"Loading Education data from {config.FILES['education']}...")
-    edu_df = data_loader.process_education_data(config.FILES['education'])
+    edu_df = data_loader.process_education_data(config.FILES["education"])
 
- 
     print("Generating Graph 1: Violence by Severity Level...")
     graph_violence_disability_levels.plot(gbv_df)
 
@@ -31,7 +27,7 @@ def main():
     print("Generating Graph 3: Education Gap...")
     graph_edu_gap_uni.plot(edu_df)
 
-    print("Generating Graph 4: Correlation Analysis for University level...") 
+    print("Generating Graph 4: Correlation Analysis for University level...")
     graph_correlation_uni.plot(gbv_df, edu_df)
 
     print("Generating Graph 5: Primary Education Gap...")
@@ -45,9 +41,4 @@ def main():
 
     plt.show()
 
-
-if __name__ == "__main__":
-    main()
-
     print("--- Analysis Complete ---")
-
