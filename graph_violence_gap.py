@@ -1,4 +1,4 @@
-# plot_violence_gap.py
+
 import matplotlib.pyplot as plt
 import numpy as np
 import config
@@ -10,7 +10,7 @@ def plot(df):
     """
     df_pivot = df.pivot(index='geo', columns='lev_limit', values='abuse_rate_%')
     
-    # Calculate Gap
+    
     df_pivot['diff_gap'] = df_pivot['SM_SEV'] - df_pivot['NONE']
     df_pivot = df_pivot.sort_values('diff_gap', ascending=True)
 
@@ -19,15 +19,15 @@ def plot(df):
 
     plt.figure(figsize=config.PLOT_SETTINGS['figsize'])
 
-    # Plot 'NONE' (Baseline) - Light Teal
+    
     plt.barh(y - h/2, df_pivot['NONE'], height=h, 
              label='No limitation (NONE)', color=config.TEAL_PALETTE['teal_1'])
 
-    # Plot 'SM_SEV' (Comparison) - Darker Teal
+    
     plt.barh(y + h/2, df_pivot['SM_SEV'], height=h, 
              label='Some or severe limitation (SM_SEV)', color=config.TEAL_PALETTE['teal_4'])
 
-    # Annotations
+   
     for i, (idx, row) in enumerate(df_pivot.iterrows()):
         gap = row['diff_gap']
         if not np.isnan(gap):
