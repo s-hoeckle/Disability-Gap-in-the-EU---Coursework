@@ -2,59 +2,15 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import config
-from scipy import stats
-
-
-def get_violence_gap(df):
-    pivot = df.pivot(index="geo", columns="lev_limit", values="abuse_rate_%")
-    gap_series = pivot["SM_SEV"] - pivot["NONE"]
-    return gap_series.rename("violence_gap")
-
-
-def get_education_gap(df):
-    conf = config.EDU_CONFIG
-
-    available_ages = df["age"].unique()
-    age_filter = (
-        conf["target_age"]
-        if conf["target_age"] in available_ages
-        else conf["fallback_age"]
-    )
-
-    mask = (
-        (df["age"] == age_filter)
-        & (df["isced11"] == conf["tet_level"])
-        & (df["sex"] == "T")
-        & (df["geo"].str.len() == 2)
-        & (df["disability_status"].isin([conf["able_code"], conf["disability_code"]]))
-    )
-    df_filtered = df[mask].copy()
-
-    pivot = df_filtered.pivot(index="geo", columns="disability_status", values="value")
-
-    gap_series = pivot[conf["able_code"]] - pivot[conf["disability_code"]]
-    return gap_series.rename("edu_gap")
-
-
-def remove_outliers(df, columns, threshold=3.0):
-    z_scores = np.abs(stats.zscore(df[columns]))
-
-    df_clean = df[(z_scores < threshold).all(axis=1)]
-
-    removed = df.index.difference(df_clean.index).tolist()
-    if removed:
-        print(f"--- Outliers Removed (Threshold {threshold}) ---")
-        print(f"Countries: {', '.join(removed)}")
-
-    return df_clean
+import util
 
 
 def plot(gbv_df, edu_df):
-    v_gap = get_violence_gap(gbv_df)
-    e_gap = get_education_gap(edu_df)
+    v_gap = util.get_violence_gap(gbv_df)
+    e_gap = util.get_education_gap(edu_df)
 
     df = pd.concat([v_gap, e_gap], axis=1, join="inner").dropna()
-    df = remove_outliers(df, columns=["violence_gap", "edu_gap"], threshold=3.0)
+    df = util.remove_outliers(df, columns=["violence_gap", "edu_gap"], threshold=3.0)
 
     plt.figure(figsize=(10, 8))
 
