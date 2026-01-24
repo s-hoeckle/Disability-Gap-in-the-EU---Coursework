@@ -57,7 +57,7 @@ def plot(gbv_df, edu_df):
     plt.xlabel(
         "Education Gap (pp)\n(Inequality in attaining at least Upper Secondary education)"
     )
-    plt.ylabel("Violence Risk Gap (pp)\n(Excess reports of violence by disabled women)")
+    plt.ylabel("Violence Gap (pp)\n(Excess reports of violence by disabled women)")
 
     plt.grid(True, linestyle="--", alpha=0.3, color="gray")
     plt.gca().spines["top"].set_visible(False)
