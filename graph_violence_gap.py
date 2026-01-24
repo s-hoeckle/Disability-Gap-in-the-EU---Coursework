@@ -45,7 +45,7 @@ def plot(df):
     plt.yticks(y, df_pivot.index)
     plt.xlabel("Reported violence (%)")
     plt.title(
-        "Disability Risk Gap: Difference in violence reported\n(Some/Severe limitations vs No limitations)"
+        "Violence Gap: Difference in violence reported\n(Some/Severe limitations vs No limitations)"
     )
     plt.legend()
     plt.tight_layout()

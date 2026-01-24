@@ -52,7 +52,7 @@ def plot(gbv_df, edu_df):
         plt.legend([f"Trend (r = {corr:.2f})"])
 
     plt.title(
-        "Correlation: Education Inequality (Upper Secondary+) vs. Violence Risk Gap\n(Subset: Women Only)"
+        "Correlation: Education Inequality (Upper Secondary+) vs. Violence Risk Gap"
     )
     plt.xlabel(
         "Education Gap (pp)\n(Inequality in attaining at least Upper Secondary education)"

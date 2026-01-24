@@ -74,7 +74,7 @@ def plot(df):
     plt.yticks(y, df_pivot.index)
     plt.xlabel("Percentage Point Gap")
     plt.title(
-        f"University Education Gap ({age_filter})\nExcess rate of degrees held by able-bodied vs. disabled people"
+        f"University Education Gap ({age_filter})\nExcess rate of university degrees held by able-bodied vs. disabled people"
     )
 
     plt.legend()
