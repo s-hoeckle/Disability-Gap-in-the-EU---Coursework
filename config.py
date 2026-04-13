@@ -31,6 +31,7 @@ FILES = {
     "health": "data/estat_hlth_dpe010.csv",
     "holiday": "data/estat_hlth_dm020.csv",
     "car": "data/estat_hlth_dm110.csv",
+    "spending": "data/estat_dsb_sprex01.csv",
 }
 
 
