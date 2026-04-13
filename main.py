@@ -10,6 +10,7 @@ import graph_correlation_broad
 import graph_correlation_primary
 import graph_poverty_disability_gap
 import graph_holiday_disability_gap
+import graph_car_disability_gap
 
 if __name__ == "__main__":
     print("--- Starting Analysis ---")
@@ -52,6 +53,12 @@ if __name__ == "__main__":
 
     print("Generating Graph 9: Holiday Affordability Disability Gap...")
     graph_holiday_disability_gap.plot(holiday_df)
+
+    print(f"Loading car affordability data from {config.FILES['car']}...")
+    car_df = data_loader.process_car_data(config.FILES["car"])
+
+    print("Generating Graph 10: Car Affordability Disability Gap...")
+    graph_car_disability_gap.plot(car_df)
 
     plt.show()
 

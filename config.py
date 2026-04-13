@@ -26,10 +26,11 @@ PLOT_SETTINGS = {
 
 
 FILES = {
-    "gbv_any": "data/estat_gbv_any_lim.tsv",
-    "education": "data/estat_edat_lfs_9920.tsv",
-    "health": "data/estat_hlth_dpe010.tsv",
-    "holiday": "data/estat_hlth_dm020_clean.csv",
+    "gbv_any": "data/estat_gbv_any_lim.csv",
+    "education": "data/estat_edat_lfs_9920.csv",
+    "health": "data/estat_hlth_dpe010.csv",
+    "holiday": "data/estat_hlth_dm020.csv",
+    "car": "data/estat_hlth_dm110.csv",
 }
 
 

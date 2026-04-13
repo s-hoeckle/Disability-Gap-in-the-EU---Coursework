@@ -3,7 +3,7 @@ import config
 
 
 def process_gbv_data(filepath):
-    df = pd.read_csv(filepath, sep="\t")
+    df = pd.read_csv(filepath)
 
     split_cols = df.iloc[:, 0].str.split(",", expand=True)
 
@@ -26,7 +26,7 @@ def process_gbv_data(filepath):
 
 
 def process_health_data(filepath):
-    df = pd.read_csv(filepath, sep="\t")
+    df = pd.read_csv(filepath)
 
     split_cols = df.iloc[:, 0].str.split(",", expand=True)
     split_cols.columns = ["freq", "unit", "lev_limit", "age", "sex", "geo"]
@@ -62,7 +62,7 @@ def process_holiday_data(filepath):
 
 
 def process_education_data(filepath):
-    df = pd.read_csv(filepath, sep="\t")
+    df = pd.read_csv(filepath)
 
     split_df = df.iloc[:, 0].str.split(",", expand=True)
 
@@ -90,3 +90,22 @@ def process_education_data(filepath):
     df_clean["value"] = pd.to_numeric(df_clean["value"], errors="coerce")
 
     return df_clean
+
+
+def process_car_data(filepath):
+    df = pd.read_csv(filepath)
+
+    split_cols = df.iloc[:, 0].str.split(",", expand=True)
+    split_cols.columns = ["freq", "unit", "lev_limit", "age", "sex", "geo"]
+
+    df = pd.concat([split_cols, df.iloc[:, 1:]], axis=1)
+
+    val_col = [c for c in df.columns if "2021" in c][0]
+    df = df.rename(columns={val_col: "car_rate_%"})
+
+    df["car_rate_%"] = df["car_rate_%"].astype(str).str.extract(r"(\d+\.?\d*)")[0]
+    df["car_rate_%"] = pd.to_numeric(df["car_rate_%"], errors="coerce")
+
+    df = df[~df["geo"].isin(config.EXCLUDED_GEO)]
+
+    return df
