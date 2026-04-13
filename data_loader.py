@@ -92,6 +92,29 @@ def process_education_data(filepath):
     return df_clean
 
 
+def process_spending_mio_data(filepath):
+    df = pd.read_csv(filepath)
+
+    split_cols = df.iloc[:, 0].str.split(",", expand=True)
+    split_cols.columns = ["freq", "spscheme", "spdep", "spdepm", "unit", "geo"]
+
+    df = pd.concat([split_cols, df.iloc[:, 1:]], axis=1)
+
+    val_col = [c for c in df.columns if "2023" in c][0]
+    df = df.rename(columns={val_col: "mio_eur"})
+
+    df["mio_eur"] = df["mio_eur"].astype(str).str.extract(r"(\d+\.?\d*)")[0]
+    df["mio_eur"] = pd.to_numeric(df["mio_eur"], errors="coerce")
+
+    df = df[
+        (df["spdep"] == "SPR")
+        & (df["spdepm"] == "TOTAL")
+        & (~df["geo"].isin(config.EXCLUDED_GEO))
+    ]
+
+    return df
+
+
 def process_spending_data(filepath):
     df = pd.read_csv(filepath)
 

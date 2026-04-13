@@ -12,6 +12,7 @@ import graph_poverty_disability_gap
 import graph_holiday_disability_gap
 import graph_car_disability_gap
 import graph_disability_spending
+import graph_disability_spending_mio
 
 if __name__ == "__main__":
     print("--- Starting Analysis ---")
@@ -66,6 +67,12 @@ if __name__ == "__main__":
 
     print("Generating Graph 11: Disability Benefit Expenditure (% of GDP)...")
     graph_disability_spending.plot(spending_df)
+
+    print(f"Loading disability spending (millions EUR) data from {config.FILES['spending_mio']}...")
+    spending_mio_df = data_loader.process_spending_mio_data(config.FILES["spending_mio"])
+
+    print("Generating Graph 12: Disability Benefit Expenditure (millions of euros)...")
+    graph_disability_spending_mio.plot(spending_mio_df)
 
     plt.show()
 

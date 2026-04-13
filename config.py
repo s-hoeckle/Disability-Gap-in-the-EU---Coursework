@@ -32,11 +32,12 @@ FILES = {
     "holiday": "data/estat_hlth_dm020.csv",
     "car": "data/estat_hlth_dm110.csv",
     "spending": "data/estat_dsb_sprex01.csv",
+    "spending_mio": "data/estat_dsb_sprex03.csv",
 }
 
 
 SEVERITY_LEVELS = ["TOTAL", "SOME", "SEV", "SM_SEV", "NONE"]
-EXCLUDED_GEO = ["EU_V"]
+EXCLUDED_GEO = ["EU_V", "EU27_2020", "EA19", "EA20", "EA21"]
 
 
 EDU_CONFIG = {
