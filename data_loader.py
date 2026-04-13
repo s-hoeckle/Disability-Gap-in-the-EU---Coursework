@@ -25,6 +25,25 @@ def process_gbv_data(filepath):
     return df
 
 
+def process_health_data(filepath):
+    df = pd.read_csv(filepath, sep="\t")
+
+    split_cols = df.iloc[:, 0].str.split(",", expand=True)
+    split_cols.columns = ["freq", "unit", "lev_limit", "age", "sex", "geo"]
+
+    df = pd.concat([split_cols, df.iloc[:, 1:]], axis=1)
+
+    val_col = [c for c in df.columns if "2021" in c][0]
+    df = df.rename(columns={val_col: "health_rate_%"})
+
+    df["health_rate_%"] = df["health_rate_%"].astype(str).str.extract(r"(\d+\.?\d*)")[0]
+    df["health_rate_%"] = pd.to_numeric(df["health_rate_%"], errors="coerce")
+
+    df = df[~df["geo"].isin(config.EXCLUDED_GEO)]
+
+    return df
+
+
 def process_education_data(filepath):
     df = pd.read_csv(filepath, sep="\t")
 

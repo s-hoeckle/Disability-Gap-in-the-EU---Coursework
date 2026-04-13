@@ -28,6 +28,7 @@ PLOT_SETTINGS = {
 FILES = {
     "gbv_any": "data/estat_gbv_any_lim.tsv",
     "education": "data/estat_edat_lfs_9920.tsv",
+    "health": "data/estat_hlth_dpe010.tsv",
 }
 
 

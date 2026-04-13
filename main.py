@@ -8,6 +8,7 @@ import graph_edu_gap_primary
 import graph_correlation_uni
 import graph_correlation_broad
 import graph_correlation_primary
+import graph_health_gap
 
 if __name__ == "__main__":
     print("--- Starting Analysis ---")
@@ -17,6 +18,9 @@ if __name__ == "__main__":
 
     print(f"Loading Education data from {config.FILES['education']}...")
     edu_df = data_loader.process_education_data(config.FILES["education"])
+
+    print(f"Loading Health data from {config.FILES['health']}...")
+    health_df = data_loader.process_health_data(config.FILES["health"])
 
     print("Generating Graph 1: Violence by Severity Level...")
     graph_violence_disability_levels.plot(gbv_df)
@@ -38,6 +42,9 @@ if __name__ == "__main__":
 
     print("Generating Graph 7: Primary Education Gap Correlation Analysis...")
     graph_correlation_primary.plot(gbv_df, edu_df)
+
+    print("Generating Graph 8: Health Gap...")
+    graph_health_gap.plot(health_df)
 
     plt.show()
 
