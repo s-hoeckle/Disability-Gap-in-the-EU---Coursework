@@ -44,6 +44,23 @@ def process_health_data(filepath):
     return df
 
 
+def process_holiday_data(filepath):
+    df = pd.read_csv(filepath)
+
+    df = df.rename(columns={
+        "disability_level": "lev_limit",
+        "age_group": "age",
+        "country": "geo",
+        "2021": "holiday_rate_%",
+    })
+
+    df["holiday_rate_%"] = pd.to_numeric(df["holiday_rate_%"], errors="coerce")
+
+    df = df[~df["geo"].isin(config.EXCLUDED_GEO)]
+
+    return df
+
+
 def process_education_data(filepath):
     df = pd.read_csv(filepath, sep="\t")
 

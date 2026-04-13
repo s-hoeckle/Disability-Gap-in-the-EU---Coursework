@@ -8,7 +8,8 @@ import graph_edu_gap_primary
 import graph_correlation_uni
 import graph_correlation_broad
 import graph_correlation_primary
-import graph_health_gap
+import graph_poverty_disability_gap
+import graph_holiday_disability_gap
 
 if __name__ == "__main__":
     print("--- Starting Analysis ---")
@@ -43,8 +44,14 @@ if __name__ == "__main__":
     print("Generating Graph 7: Primary Education Gap Correlation Analysis...")
     graph_correlation_primary.plot(gbv_df, edu_df)
 
-    print("Generating Graph 8: Health Gap...")
-    graph_health_gap.plot(health_df)
+    print("Generating Graph 8: Poverty/Social Exclusion Disability Gap...")
+    graph_poverty_disability_gap.plot(health_df)
+
+    print(f"Loading Holiday data from {config.FILES['holiday']}...")
+    holiday_df = data_loader.process_holiday_data(config.FILES["holiday"])
+
+    print("Generating Graph 9: Holiday Affordability Disability Gap...")
+    graph_holiday_disability_gap.plot(holiday_df)
 
     plt.show()
 
