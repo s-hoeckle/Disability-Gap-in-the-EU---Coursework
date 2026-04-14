@@ -92,6 +92,25 @@ def process_education_data(filepath):
     return df_clean
 
 
+def process_beneficiaries_data(filepath):
+    df = pd.read_csv(filepath)
+
+    split_cols = df.iloc[:, 0].str.split(",", expand=True)
+    split_cols.columns = ["freq", "spdepm", "spscheme", "spdepb", "sex", "unit", "geo"]
+
+    df = pd.concat([split_cols, df.iloc[:, 1:]], axis=1)
+
+    val_col = [c for c in df.columns if "2023" in c][0]
+    df = df.rename(columns={val_col: "beneficiaries"})
+
+    df["beneficiaries"] = df["beneficiaries"].astype(str).str.extract(r"(\d+\.?\d*)")[0]
+    df["beneficiaries"] = pd.to_numeric(df["beneficiaries"], errors="coerce")
+
+    df = df[~df["geo"].isin(config.EXCLUDED_GEO)]
+
+    return df
+
+
 def process_spending_mio_data(filepath):
     df = pd.read_csv(filepath)
 

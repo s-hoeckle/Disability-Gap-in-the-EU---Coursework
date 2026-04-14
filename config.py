@@ -33,6 +33,7 @@ FILES = {
     "car": "data/estat_hlth_dm110.csv",
     "spending": "data/estat_dsb_sprex01.csv",
     "spending_mio": "data/estat_dsb_sprex03.csv",
+    "beneficiaries": "data/estat_dsb_sprpb01.csv",
 }
 
 
